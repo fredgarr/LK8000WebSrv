@@ -10,9 +10,10 @@ SRC = embedded_c.c
 TOP = ../civetweb
 CIVETWEB_LIB = libcivetweb.a
 
-CFLAGS = -I$(TOP)/include $(COPT) -DUSE_WEBSOCKET -DUSE_IPV6 -DNO_SSL
+CFLAGS = -I$(TOP)/include $(COPT) -DNO_SSL
 LIBS = -lpthread
 
+CC = $(CROSS_COMPILE)gcc
 
 include $(TOP)/resources/Makefile.in-os
 
@@ -29,7 +30,7 @@ $(PROG): $(CIVETWEB_LIB) $(SRC)
 	$(CC) -o websrv $(CFLAGS) $(LDFLAGS) $(SRC) $(CIVETWEB_LIB) $(LIBS) 
 
 $(CIVETWEB_LIB):
-	$(MAKE) -C $(TOP) WITH_IPV6=0 WITH_WEBSOCKET=0 NO_SSL=1 clean lib
+	$(MAKE) -C $(TOP) NO_SSL=1 clean lib
 	cp $(TOP)/$(CIVETWEB_LIB) .
 
 clean:
