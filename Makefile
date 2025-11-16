@@ -13,7 +13,7 @@ CIVETWEB_LIB = libcivetweb.a
 CFLAGS = -I$(TOP)/include $(COPT) -DNO_SSL
 LIBS = -lpthread
 
-CC = $(CROSS_COMPILE)gcc
+export CC = $(CROSS_COMPILE)gcc
 
 include $(TOP)/resources/Makefile.in-os
 
